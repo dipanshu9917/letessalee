@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>LatestSale Admin Login</title>
+  <style>
+    body{font-family:Arial;padding:20px;background:#f4f4f4;}
+    input,button{padding:10px;margin:5px;width:100%;border-radius:5px;}
+    button{background:#0d6efd;color:white;border:none;cursor:pointer;}
+    h2{color:#0d6efd;}
+    #panel{display:none;}
+  </style>
+</head>
+<body>
+
+<h2>LatestSale – Admin Login</h2>
+
+<div id="login">
+  <input id="username" placeholder="Username">
+  <input id="password" placeholder="Password" type="password">
+  <button onclick="login()">Login</button>
+</div>
+
+<div id="panel">
+  <h2>Owner Product Upload</h2>
+  <input id="pname" placeholder="Product Name">
+  <input id="pprice" placeholder="Selling Price">
+  <input id="pimg" placeholder="Product Image URL">
+  <button onclick="addProduct()">Upload Product</button>
+  <button onclick="viewOrders()">View Orders</button>
+</div>
+
+<script>
+function login(){
+  let user=document.getElementById("username").value;
+  let pass=document.getElementById("password").value;
+  if(user==="admin" && pass==="1234"){  // change username & password
+    document.getElementById("login").style.display="none";
+    document.getElementById("panel").style.display="block";
+  } else { alert("Invalid Login"); }
+}
+
+function addProduct(){
+  let products = JSON.parse(localStorage.getItem("products")) || [];
+  products.push({
+    name:pname.value,
+    price:pprice.value,
+    img:pimg.value
+  });
+  localStorage.setItem("products",JSON.stringify(products));
+  alert("Product Uploaded Successfully!");
+  pname.value=""; pprice.value=""; pimg.value="";
+}
+
+function viewOrders(){
+  window.open("orders.html","_blank");
+}
+</script>
+
+</body>
+</html

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>LatestSale Orders</title>
+  <style>
+    body{font-family:Arial;padding:20px;background:#f4f4f4;}
+    .box{border:1px solid #ccc;padding:10px;margin:10px;border-radius:6px;background:white;}
+    h2{color:#0d6efd;}
+  </style>
+</head>
+<body>
+
+<h2>LatestSale – Customer Orders</h2>
+<div id="orders"></div>
+
+<script>
+let orders = JSON.parse(localStorage.getItem("orders")) || [];
+let box=document.getElementById("orders");
+
+if(orders.length==0){ box.innerHTML="<p>No orders yet.</p>"; }
+
+orders.forEach((o,i)=>{
+  box.innerHTML+=`
+  <div class="box">
+    <b>${o.product}</b> – ₹${o.price}<br>
+    Name: ${o.name}<br>
+    Phone: ${o.phone}<br>
+    Address: ${o.address}<br>
+    Payment: ${o.payment}<br>
+    <small>Order ID: ${i+1}</small>
+  </div>`;
+});
+</script>
+
+</body>
+</html>
